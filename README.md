@@ -23,6 +23,7 @@ It also provides a template for providing a `vimPlugin` nix flake output.
 3. Add the test inputs to [`flake.nix`](./flake.nix).
 4. Update [`mkPlenaryTest` in the `ci-overlay.nix`](./nix/ci-overlay.nix).
 5. Add the name of your plugin to [`flake.nix`](./flake.nix).
+6. Add [`plenary.nvim`](https://github.com/nvim-lua/plenary.nvim) specs to the `tests` directory.
 
 
 ## Contributing
