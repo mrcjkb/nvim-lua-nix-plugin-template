@@ -12,6 +12,8 @@ This project uses [Conventional Commits](https://www.conventionalcommits.org/en/
 
 I use [`nix`](https://nixos.org/download.html#download-nix) for development and testing.
 
+Formatting is done with [`stylua`](https://github.com/JohnnyMorganz/StyLua).
+
 To enter a development shell:
 
 ```console

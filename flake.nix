@@ -1,5 +1,5 @@
 {
-  description = "Nix flake CI template for GitHub Actions"; # TODO: Set description
+  description = "Neovim Nix flake CI template for GitHub Actions"; # TODO: Set description
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
@@ -15,10 +15,23 @@
     };
 
     # TODO: Add imports for tests here
+
+    packer-nvim = {
+      url = "github:wbthomason/packer.nvim";
+      flake = false;
+    };
+
+    plenary-nvim = {
+      url = "github:nvim-lua/plenary.nvim";
+      flake = false;
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, pre-commit-hooks, ... }:
+  outputs = inputs@{ self, nixpkgs, pre-commit-hooks, packer-nvim, plenary-nvim, ... }:
     let
+
+      name = "plugin-template.nvim"; # TODO: Choose a name
+
       supportedSystems = [
         "aarch64-linux"
         "aarch64-darwin"
@@ -28,12 +41,23 @@
       perSystem = nixpkgs.lib.genAttrs supportedSystems;
       pkgsFor = system: import nixpkgs { inherit system; };
 
-      ci-overlay = import ./nix/ci-overlay.nix { inherit (inputs); }; # TODO: Add test inputs as arguments here
+      ci-overlay = import ./nix/ci-overlay.nix { inherit (inputs) packer-nvim plenary-nvim; }; # TODO: Add test inputs as arguments here
+      nvim-plugin-overlay = import ./nix/nvim-plugin-overlay.nix { inherit name; self = ./.; };
+
+      nvim-plugin-for = system:
+        let
+          pkgs = pkgsFor system;
+        in
+        pkgs.vimUtils.buildVimPluginFrom2Nix {
+          inherit name;
+          src = ./.;
+        };
 
       pre-commit-check-for = system: pre-commit-hooks.lib.${system}.run {
         src = ./.;
         hooks = {
           nixpkgs-fmt.enable = true;
+          stylua.enable = true;
           # TODO: Add additional formatting checks here
         };
       };
@@ -53,8 +77,8 @@
     in
     {
       overlays = {
-        inherit ci-overlay;
-        default = ci-overlay;
+        inherit ci-overlay nvim-plugin-overlay;
+        default = nvim-plugin-overlay;
       };
 
       devShells = perSystem (system: rec {
@@ -63,7 +87,8 @@
       });
 
       packages = perSystem (system: rec {
-        # TODO: Add packages here
+        default = nvim-plugin;
+        nvim-plugin = nvim-plugin-for system;
       });
 
       checks = perSystem (system:
