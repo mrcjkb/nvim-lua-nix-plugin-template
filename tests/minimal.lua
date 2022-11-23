@@ -34,7 +34,7 @@ if vim.fn.empty(vim.fn.glob(packer_install_path)) > 0 then
 else
   vim.cmd('packadd packer.nvim')
   vim.cmd('packadd plenary.nvim')
-  vim.cmd('runtime! plugin/plenary.vim')
+  vim.cmd('runtime! plugin/plenary.nvim')
 end
 
 local packer = require('packer')
