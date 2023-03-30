@@ -28,6 +28,7 @@ with final.stdenv; let
           start = [
             final.nvim-plugin
             plenary-plugin
+            # Add plugin dependencies here
           ];
         };
       };

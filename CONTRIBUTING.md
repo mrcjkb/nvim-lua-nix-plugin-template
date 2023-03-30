@@ -2,15 +2,18 @@
 
 Contributions are more than welcome!
 
-Please don't forget to add your changes to the "Unreleased" section of [the changelog](./CHANGELOG.md) (if applicable).
+Please don't forget to add your changes to the "Unreleased" section of
+[the changelog](./CHANGELOG.md) (if applicable).
 
 ## Commit messages
 
-This project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
+This project uses
+[Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
 ## Development
 
-I use [`nix`](https://nixos.org/download.html#download-nix) for development and testing.
+I use [`nix`](https://nixos.org/download.html#download-nix)
+for development and testing.
 
 Formatting is done with [`stylua`](https://github.com/JohnnyMorganz/StyLua).
 
@@ -32,8 +35,8 @@ To apply formatting, while in a devShell, run
 pre-commit run --all
 ```
 
-If you use [`direnv`](https://direnv.net/), just run `direnv allow` and you will be dropped in this devShell.
-
+If you use [`direnv`](https://direnv.net/),
+just run `direnv allow` and you will be dropped in this devShell.
 
 ## Tests
 
@@ -61,7 +64,8 @@ or (with flakes enabled)
 nix build .#checks.<your-system>.formatting --print-build-logs
 ```
 
-If you have flakes enabled and just want to run all checks that are available, run:
+If you have flakes enabled and just want to run all checks that are available,
+run:
 
 ```console
 nix flake check --print-build-logs
