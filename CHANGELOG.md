@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - More pre-commit-hooks and linters.
 - `luarocks-tag-release` workflow.
 
+### Changed
+
+- Remove `cachix-action` from workflow.
+
 ## [2.0.0] - 2023-01-02
 
 ### Changed
