@@ -75,11 +75,6 @@
           editorconfig-checker.enable = true;
           markdownlint.enable = true;
         };
-        settings = {
-          markdownlint.config = {
-            MD024 = false; # Duplicate heading
-          };
-        };
       };
 
       devShell = pkgs.mkShell {
