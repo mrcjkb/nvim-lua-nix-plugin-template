@@ -38,3 +38,14 @@ to the `tests` directory.
 
 All contributions are welcome!
 See [CONTRIBUTING.md](./CONTRIBUTING.md).
+
+## License
+
+This template is [licensed according to GPL version 2](./LICENSE),
+with the following exception:
+
+The license applies only to the Nix CI infrastructure provided by this template
+repository, including any modifications made to the infrastructure.
+Any software that uses or is derived from this template may be licensed under any
+[OSI approved open source license](https://opensource.org/licenses/),
+without being subject to the GPL version 2 license of this template.
