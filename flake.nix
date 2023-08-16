@@ -16,6 +16,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    neodev-nvim = {
+      url = "github:folke/neodev.nvim";
+      flake = false;
+    };
+
     plenary-nvim = {
       url = "github:nvim-lua/plenary.nvim";
       flake = false;
@@ -28,6 +33,7 @@
     flake-parts,
     pre-commit-hooks,
     neovim-nightly-overlay,
+    neodev-nvim,
     plenary-nvim,
     ...
   }: let
@@ -53,6 +59,7 @@
         ci-overlay = import ./nix/ci-overlay.nix {
           inherit
             self
+            neodev-nvim
             plenary-nvim
             ;
         };
@@ -72,8 +79,35 @@
             alejandra.enable = true;
             stylua.enable = true;
             luacheck.enable = true;
+            lua-ls.enable = true;
             editorconfig-checker.enable = true;
             markdownlint.enable = true;
+          };
+          settings = {
+            lua-ls = {
+              config = {
+                runtime.version = "LuaJIT";
+                Lua = {
+                  workspace = {
+                    library = [
+                      "${pkgs.neovim-nightly}/share/nvim/runtime/lua"
+                      "${pkgs.neodev-plugin}/types/nightly"
+                      "${pkgs.plenary-plugin}/lua"
+                    ];
+                    checkThirdParty = false;
+                    ignoreDir = [
+                      ".git"
+                      ".github"
+                      ".direnv"
+                      "result"
+                      "nix"
+                      "doc"
+                    ];
+                  };
+                  diagnostics.libraryFiles = "Disable";
+                };
+              };
+            };
           };
         };
 

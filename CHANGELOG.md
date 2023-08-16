@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - More pre-commit-hooks and linters.
 - `luarocks-tag-release` workflow.
+- Add lua-ls pre-commit checks.
 
 ### Changed
 
