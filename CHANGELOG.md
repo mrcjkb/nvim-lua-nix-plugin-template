@@ -10,11 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Luarocks Upload workflow
+- Luarocks Upload workflow.
 
 ### Changed
 
 - Loosen license restrictions to allow any OSI approved open source derivations.
+- Switch from `flake-utils` to `flake-parts`.
 
 ### Added
 
