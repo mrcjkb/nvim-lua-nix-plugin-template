@@ -2,7 +2,7 @@
 {
   self,
   neodev-nvim,
-  plenary-nvim,
+  plugin-name,
 }: final: prev:
 with final.lib;
 with final.stdenv; let
@@ -13,73 +13,46 @@ with final.stdenv; let
     src = neodev-nvim;
   };
 
-  plenary-plugin = final.pkgs.vimUtils.buildVimPluginFrom2Nix {
-    name = "plenary.nvim";
-    src = plenary-nvim;
-  };
-
-  mkPlenaryTest = {
+  mkNeorocksTest = {
     name,
     nvim ? final.neovim-unwrapped,
     extraPkgs ? [],
   }: let
     nvim-wrapped = final.pkgs.wrapNeovim nvim {
       configure = {
-        customRC = ''
-          lua << EOF
-          vim.cmd('runtime! plugin/plenary.vim')
-          EOF
-        '';
         packages.myVimPackage = {
           start = [
-            final.nvim-plugin
-            plenary-plugin
-            # Add plugin dependencies here
+            # Add plugin dependencies that aren't on LuaRocks here
           ];
         };
       };
     };
   in
-    mkDerivation {
+    final.pkgs.neorocksTest {
       inherit name;
-
+      pname = plugin-name;
       src = self;
+      neovim = nvim-wrapped;
 
-      phases = [
-        "unpackPhase"
-        "buildPhase"
-        "checkPhase"
-      ];
+      # luaPackages = ps: with ps; [];
+      # extraPackages = [];
 
-      doCheck = true;
-
-      buildInputs = with final;
-        [
-          nvim-wrapped
-          makeWrapper
-        ]
-        ++ extraPkgs;
+      preCheck = ''
+        export HOME=$(realpath .)
+      '';
 
       buildPhase = ''
         mkdir -p $out
         cp -r tests $out
       '';
-
-      checkPhase = ''
-        export HOME=$(realpath .)
-        export TEST_CWD=$(realpath $out/tests)
-        cd $out
-        nvim --headless --noplugin -c "PlenaryBustedDirectory tests {nvim_cmd = 'nvim'}"
-      '';
     };
 in {
-  nvim-stable-tests = mkPlenaryTest {name = "neovim-stable-tests";};
-  nvim-nightly-tests = mkPlenaryTest {
+  nvim-stable-tests = mkNeorocksTest {name = "neovim-stable-tests";};
+  nvim-nightly-tests = mkNeorocksTest {
     name = "neovim-nightly-tests";
     nvim = nvim-nightly;
   };
   inherit
     neodev-plugin
-    plenary-plugin
     ;
 }

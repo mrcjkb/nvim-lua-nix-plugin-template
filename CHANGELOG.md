@@ -8,6 +8,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.1.0] - 2023-09-05
+
+### Added
+
+- Use `neorocksTest`.
+
+### Changed
+
+- Bump `luarocks-tag-release` version.
+
+### Fixed
+
+- Fail release if changelog entry doesn't exist.
+
 ## [3.0.0] - 2023-08-16
 
 ### Fixed

@@ -8,21 +8,14 @@
 
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
+    neorocks = {
+      url = "github:nvim-neorocks/neorocks";
     };
 
     neodev-nvim = {
       url = "github:folke/neodev.nvim";
-      flake = false;
-    };
-
-    plenary-nvim = {
-      url = "github:nvim-lua/plenary.nvim";
       flake = false;
     };
   };
@@ -32,9 +25,8 @@
     nixpkgs,
     flake-parts,
     pre-commit-hooks,
-    neovim-nightly-overlay,
+    neorocks,
     neodev-nvim,
-    plenary-nvim,
     ...
   }: let
     name = "plugin-template.nvim"; # TODO: Choose a name
@@ -60,15 +52,15 @@
           inherit
             self
             neodev-nvim
-            plenary-nvim
             ;
+          plugin-name = name;
         };
 
         pkgs = import nixpkgs {
           inherit system;
           overlays = [
             ci-overlay
-            neovim-nightly-overlay.overlay
+            neorocks.overlays.default
             plugin-overlay
           ];
         };
@@ -92,7 +84,7 @@
                     library = [
                       "${pkgs.neovim-nightly}/share/nvim/runtime/lua"
                       "${pkgs.neodev-plugin}/types/nightly"
-                      "${pkgs.plenary-plugin}/lua"
+                      # "${pkgs.luajitPackages.busted}"
                     ];
                     checkThirdParty = false;
                     ignoreDir = [
@@ -102,9 +94,10 @@
                       "result"
                       "nix"
                       "doc"
+                      "spec" # FIXME: Add busted library
                     ];
                   };
-                  diagnostics.libraryFiles = "Disable";
+                  diagnostics. libraryFiles = "Disable";
                 };
               };
             };
