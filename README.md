@@ -10,12 +10,12 @@ This repository is a template for Neovim plugins written in Lua.
 
 - GitHub Actions workflows with a locally reproducible CI,
 using [`nix` flakes](https://nixos.wiki/wiki/Flakes).
-- Run [`busted`](https://github.com/lunarmodules/busted)
-  tests with both neovim stable and neovim nightly as the lua interpreter
+- Run tests with both neovim stable and neovim nightly
   using [`neorocksTest`](https://github.com/nvim-neorocks/neorocks).
 - Lints and a nix shell with pre-commit-hooks:
   - [`luacheck`](https://github.com/mpeterv/luacheck)
   - [`stylua`](https://github.com/JohnnyMorganz/StyLua)
+  - [`lua-language-server` static type checks](https://github.com/LuaLS/lua-language-server/wiki/Diagnosis-Report)
   - [`alejandra`](https://github.com/kamadorueda/alejandra)
   - [`editorconfig-checker`](https://github.com/editorconfig-checker/editorconfig-checker)
   - [`markdownlint`](https://github.com/DavidAnson/markdownlint)
@@ -37,7 +37,6 @@ to the `tests` directory.
 [GitHub Actions secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository).
 1. Text that needs to be updated is marked with `TODO:` comments.
 1. Rename [`plugin-template.nvim-scm-1.rockspec`](./plugin-template.nvim-scm-1.rockspec)
-   to `<your-plugins-name>-scm-1.rockspec`.
 
 ## Contributing
 
