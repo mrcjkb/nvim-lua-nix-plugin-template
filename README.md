@@ -26,14 +26,17 @@ with the [luarocks-tag-release action](https://github.com/nvim-neorocks/luarocks
 
 1. Click on [Use this template](https://github.com/MrcJkb/nvim-lua-nix-plugin-template/generate)
 to start a repo based on this template. **Do _not_ fork it**.
-2. If your plugin depends on other plugins,
+1. If your plugin depends on other plugins,
 add them to [`nvim-wrapped` in the `ci-overlay.nix`](./nix/ci-overlay.nix).
-3. Add the name of your plugin to [`flake.nix`](./flake.nix).
-4. Add [`plenary.nvim`](https://github.com/nvim-lua/plenary.nvim) specs
+1. Add the name of your plugin to [`flake.nix`](./flake.nix).
+1. Add [`plenary.nvim`](https://github.com/nvim-lua/plenary.nvim) specs
 to the `tests` directory.
-5. Create a [LuaRocks API key](https://luarocks.org/settings/api-keys).
-6. Add the API key to the repository's
+1. Create a [LuaRocks API key](https://luarocks.org/settings/api-keys).
+1. Add the API key to the repository's
 [GitHub Actions secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository).
+1. Text that needs to be updated is marked with `TODO:` comments.
+1. Rename [`plugin-template.nvim-scm-1.rockspec`](./plugin-template.nvim-scm-1.rockspec)
+   to `<your-plugins-name>-scm-1.rockspec`.
 
 ## Contributing
 
