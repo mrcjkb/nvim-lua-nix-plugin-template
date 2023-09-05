@@ -10,7 +10,8 @@ This repository is a template for Neovim plugins written in Lua.
 
 - GitHub Actions workflows with a locally reproducible CI,
 using [`nix` flakes](https://nixos.wiki/wiki/Flakes).
-- Run tests with both neovim stable and neovim nightly
+- Run [`busted`](https://github.com/lunarmodules/busted)
+  tests with both neovim stable and neovim nightly as the lua interpreter
   using [`neorocksTest`](https://github.com/nvim-neorocks/neorocks).
 - Lints and a nix shell with pre-commit-hooks:
   - [`luacheck`](https://github.com/mpeterv/luacheck)
