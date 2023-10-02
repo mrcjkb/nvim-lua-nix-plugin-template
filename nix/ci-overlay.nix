@@ -8,7 +8,7 @@ with final.lib;
 with final.stdenv; let
   nvim-nightly = final.neovim-nightly;
 
-  neodev-plugin = final.pkgs.vimUtils.buildVimPluginFrom2Nix {
+  neodev-plugin = final.pkgs.vimUtils.buildVimPlugin {
     name = "neodev.nvim";
     src = neodev-nvim;
   };
