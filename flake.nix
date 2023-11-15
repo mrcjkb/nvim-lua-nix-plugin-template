@@ -84,7 +84,8 @@
                     library = [
                       "${pkgs.neovim-nightly}/share/nvim/runtime/lua"
                       "${pkgs.neodev-plugin}/types/nightly"
-                      # "${pkgs.luajitPackages.busted}"
+                      "\${3rd}/busted/library"
+                      "\${3rd}/luassert/library"
                     ];
                     checkThirdParty = false;
                     ignoreDir = [
@@ -94,7 +95,6 @@
                       "result"
                       "nix"
                       "doc"
-                      "spec" # FIXME: Add busted library
                     ];
                   };
                   diagnostics. libraryFiles = "Disable";
