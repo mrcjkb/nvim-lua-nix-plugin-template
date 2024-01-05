@@ -33,7 +33,7 @@ to start a repo based on this template. **Do _not_ fork it**.
 1. If your plugin depends on other plugins,
 add them to [`nvim-wrapped` in the `ci-overlay.nix`](./nix/ci-overlay.nix).
 1. Add the name of your plugin to [`flake.nix`](./flake.nix).
-1. Add [`plenary.nvim`](https://github.com/nvim-lua/plenary.nvim) specs
+1. Add [`busted`](https://lunarmodules.github.io/busted/) specs
 to the `tests` directory.
 1. Create a [LuaRocks API key](https://luarocks.org/settings/api-keys).
 1. Add the API key to the repository's
