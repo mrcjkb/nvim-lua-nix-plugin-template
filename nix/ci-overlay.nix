@@ -46,6 +46,18 @@ with final.stdenv; let
         cp -r tests $out
       '';
     };
+
+  docgen = final.writeShellApplication {
+    name = "docgen";
+    runtimeInputs = with final; [
+      lemmy-help
+    ];
+    text = ''
+      mkdir -p doc
+      # TODO: Update this!
+      lemmy-help lua/rocks/{init,commands,config/init}.lua > doc/nvim-plugin.txt
+    '';
+  };
 in {
   nvim-stable-tests = mkNeorocksTest {name = "neovim-stable-tests";};
   nvim-nightly-tests = mkNeorocksTest {
@@ -54,5 +66,6 @@ in {
   };
   inherit
     neodev-plugin
+    docgen
     ;
 }

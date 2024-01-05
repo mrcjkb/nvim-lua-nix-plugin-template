@@ -161,6 +161,7 @@
         packages = rec {
           default = nvim-plugin;
           inherit (pkgs.vimPlugins) nvim-plugin;
+          inherit (pkgs) docgen;
         };
 
         checks = {
