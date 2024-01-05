@@ -39,7 +39,8 @@ to the `tests` directory.
 1. Add the API key to the repository's
 [GitHub Actions secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository).
 1. Text that needs to be updated is marked with `TODO:` comments.
-1. Rename [`plugin-template.nvim-scm-1.rockspec`](./plugin-template.nvim-scm-1.rockspec)
+1. Rename [`plugin-template.nvim-scm-1.rockspec`](./plugin-template.nvim-scm-1.rockspec).
+1. Delete the content of [CHANGELOG.md](./CHANGELOG.md).
 
 ## Contributing
 
