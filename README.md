@@ -22,6 +22,9 @@ using [`nix` flakes](https://nixos.wiki/wiki/Flakes).
 - `vimPlugin` nix flake output.
 - Automatically publish tags to [LuaRocks](https://luarocks.org/labels/neovim)
 with the [luarocks-tag-release action](https://github.com/nvim-neorocks/luarocks-tag-release).
+- Automatic release PRs using [conventional commits](https://conventionalcommits.org/)
+  with [release-please](https://github.com/googleapis/release-please).
+- Automatically comment PRs with a review checklist.
 
 ## Setup
 
