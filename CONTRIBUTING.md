@@ -2,20 +2,41 @@
 
 Contributions are more than welcome!
 
-Please don't forget to add your changes to the "Unreleased" section of
-[the changelog](./CHANGELOG.md) (if applicable).
+## Commit messages / PR title
 
-## Commit messages
+Please ensure your pull request title conforms to [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
-This project uses
-[Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
+## CI
+
+CI checks are run using [`nix`](https://nixos.org/download.html#download-nix).
 
 ## Development
 
-I use [`nix`](https://nixos.org/download.html#download-nix)
-(with flakes enabled) for development and testing.
+### Dev environment
 
-Formatting is done with [`stylua`](https://github.com/JohnnyMorganz/StyLua).
+I use the following tools:
+
+#### Formatting
+
+- [`.editorconfig`](https://editorconfig.org/) (with [`editorconfig-checker`](https://github.com/editorconfig-checker/editorconfig-checker))
+- [`stylua`](https://github.com/JohnnyMorganz/StyLua) [Lua]
+- [`alejandra`](https://github.com/kamadorueda/alejandra) [Nix]
+
+#### Linting
+
+- [`luacheck`](https://github.com/mpeterv/luacheck) [Lua]
+- [`markdownlint`](https://github.com/DavidAnson/markdownlint) [Markdown]
+
+#### Static type checking
+
+- [`lua-language-server`](https://github.com/LuaLS/lua-language-server/wiki/Diagnosis-Report#create-a-report)
+
+### Nix devShell
+
+- Requires [flakes](https://nixos.wiki/wiki/Flakes) to be enabled.
+
+This project provides a `flake.nix` that can
+bootstrap all of the above development tools.
 
 To enter a development shell:
 
@@ -31,8 +52,6 @@ pre-commit run --all
 
 If you use [`direnv`](https://direnv.net/),
 just run `direnv allow` and you will be dropped in this devShell.
-
-## Tests
 
 ### Running tests
 
@@ -56,21 +75,32 @@ Or
 
 ### Running tests and checks with Nix
 
-If you just want to run all checks that are available,
-run:
+If you just want to run all checks that are available, run:
 
 ```console
-nix flake check --print-build-logs
+nix flake check -L --option sandbox false
 ```
 
-To run tests locally
+To run tests locally, using Nix:
 
 ```console
-nix build .#checks.<your-system>.ci --print-build-logs
+nix build .#checks.<your-system>.integration-nightly -L --option sandbox false
 ```
 
-For formatting:
+For example:
 
 ```console
-nix build .#checks.<your-system>.formatting --print-build-logs
+nix build .#checks.x86_64-linux.integration-nightly -L --option sandbox false
+```
+
+For formatting and linting:
+
+```console
+nix build .#checks.<your-system>.pre-commit-check -L
+```
+
+For static type checking:
+
+```console
+nix build .#checks.<your-system>.type-check-nightly -L
 ```
