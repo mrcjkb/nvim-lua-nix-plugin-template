@@ -37,8 +37,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * replace nixpkgs-fmt with alejandra ([eb199e0](https://github.com/mrcjkb/nvim-lua-nix-plugin-template/commit/eb199e06f3ccb2088610043a9ba154482887afe8))
 
-## [Unreleased]
-
 ## [3.1.0] - 2023-09-05
 
 ### Added
