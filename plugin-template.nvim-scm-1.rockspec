@@ -23,6 +23,11 @@ source = {
 
 build = {
   type = 'builtin',
+  -- TODO: Add runtime diretories here
+  -- copy_directories = {
+      -- 'doc',
+      -- "plugin",
+  -- },
 }
 
 
