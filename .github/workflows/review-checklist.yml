@@ -5,6 +5,10 @@ on:
   pull_request_target:
     types: [opened, review_requested]
 
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   review-checklist:
     name: Review Checklist
@@ -47,6 +51,6 @@ jobs:
               - [ ] Tests have been added.
               - [ ] Tested manually (Steps to reproduce in PR description).
             - [ ] Updated documentation.
-            - [ ] Updated [CHANGELOG.md](https://github.com/<owner>/<repo>/blob/master/CHANGELOG.md)
+            - [ ] Updated [CHANGELOG.md](https://github.com/mrcjkb/haskell-tools.nvim/blob/master/CHANGELOG.md)
             `,
             })
