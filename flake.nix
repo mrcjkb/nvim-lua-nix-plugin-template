@@ -13,11 +13,6 @@
     neorocks = {
       url = "github:nvim-neorocks/neorocks";
     };
-
-    neodev-nvim = {
-      url = "github:folke/neodev.nvim";
-      flake = false;
-    };
   };
 
   outputs = inputs @ {
@@ -26,7 +21,6 @@
     flake-parts,
     pre-commit-hooks,
     neorocks,
-    neodev-nvim,
     ...
   }: let
     name = "plugin-template.nvim"; # TODO: Choose a name
@@ -49,10 +43,7 @@
         ...
       }: let
         ci-overlay = import ./nix/ci-overlay.nix {
-          inherit
-            self
-            neodev-nvim
-            ;
+          inherit self;
           plugin-name = name;
         };
 

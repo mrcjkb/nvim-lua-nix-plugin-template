@@ -181,22 +181,6 @@
         "type": "github"
       }
     },
-    "neodev-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1704434754,
-        "narHash": "sha256-guSJ809CDvzbnPyYG8ELr7LEkuX833m5TK+U0hl0hbc=",
-        "owner": "folke",
-        "repo": "neodev.nvim",
-        "rev": "be8d4d4cab6c13c6a572269c9d6a63774baba9a0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "folke",
-        "repo": "neodev.nvim",
-        "type": "github"
-      }
-    },
     "neorocks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -391,7 +375,6 @@
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
-        "neodev-nvim": "neodev-nvim",
         "neorocks": "neorocks",
         "nixpkgs": "nixpkgs_2",
         "pre-commit-hooks": "pre-commit-hooks_2"
